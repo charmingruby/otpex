@@ -1,0 +1,12 @@
+@baseUrl = http://localhost:4000/api
+
+# @name create_distribuition
+POST {{baseUrl}}/distribuitions
+Content-Type: application/json
+
+{
+    "name": "Sat Server",
+    "loc": "east-us"
+}
+
+###

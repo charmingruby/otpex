@@ -7,6 +7,9 @@ defmodule OtpexWeb.Router do
 
   scope "/api", OtpexWeb do
     pipe_through :api
+
+    post "/distribuitions", DistribuitionsController, :create_distribuition
+    post "/logs/:distribuition_id", LogsController, :create_log
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
