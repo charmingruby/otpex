@@ -1,19 +1,39 @@
 defmodule OtpexWeb.LogsController do
-  alias Otpex.Distribuitions.Services
+  alias Otpex.Logs.Services
   alias OtpexWeb.Helpers.Params
 
   use OtpexWeb, :controller
 
-  @create_log_params_schema %{
+  action_fallback OtpexWeb.FallbackController
+
+  @create_single_log_params_schema %{
     name: [type: :string, required: true],
-    loc: [type: :string, required: true]
+    context: [type: :string, required: true],
+    status: [type: :string, required: true],
+    distribuition_id: [type: :string, required: true]
   }
-  def create_log(conn, params) do
-    with {:ok, casted_params} <- Params.cast_params(params, @create_log_params_schema),
-         {:ok, distribuition} <- Services.CreateDistribuition.call(casted_params) do
+  def create_single_log(conn, params) do
+    with {:ok, casted_params} <- Params.cast_params(params, @create_single_log_params_schema),
+         {:ok, log} <- Services.CreateSingleLog.call(casted_params) do
       conn
       |> put_status(201)
-      |> render(:distribuition, distribuition: distribuition)
+      |> render(:log, log: log)
+    end
+  end
+
+  @create_multiple_log_params_schema %{
+    name: [type: :string, required: true],
+    context: [type: :string, required: true],
+    status: [type: :string, required: true],
+    distribuition_id: [type: :string, required: true],
+    quantity: [type: :string, required: true]
+  }
+  def create_multiple_log(conn, params) do
+    with {:ok, casted_params} <- Params.cast_params(params, @create_multiple_log_params_schema),
+         {:ok, logs} <- Services.CreateMultipleLogs.call(casted_params) do
+      conn
+      |> put_status(201)
+      |> render(:log_list, logs: logs)
     end
   end
 end

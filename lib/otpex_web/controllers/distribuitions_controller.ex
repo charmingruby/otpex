@@ -4,6 +4,8 @@ defmodule OtpexWeb.DistribuitionsController do
 
   use OtpexWeb, :controller
 
+  action_fallback OtpexWeb.FallbackController
+
   @create_distribuition_params_schema %{
     name: [type: :string, required: true],
     loc: [type: :string, required: true]

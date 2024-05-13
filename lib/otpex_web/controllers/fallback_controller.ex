@@ -9,7 +9,7 @@ defmodule OtpexWeb.FallbackController do
 
     conn
     |> put_status(:unprocessable_entity)
-    |> put_view(json: InvarcWeb.ErrorJSON)
+    |> put_view(json: OtpexWeb.ErrorJSON)
     |> render(:error, error: err)
   end
 
@@ -21,7 +21,7 @@ defmodule OtpexWeb.FallbackController do
 
     conn
     |> put_status(:not_found)
-    |> put_view(json: InvarcWeb.ErrorJSON)
+    |> put_view(json: OtpexWeb.ErrorJSON)
     |> render(:error, error: err)
   end
 
@@ -33,16 +33,16 @@ defmodule OtpexWeb.FallbackController do
 
     conn
     |> put_status(:bad_request)
-    |> put_view(json: InvarcWeb.ErrorJSON)
+    |> put_view(json: OtpexWeb.ErrorJSON)
     |> render(:error, error: err)
-
   end
+
   def call(conn, {:error, {:bad_request, message}}) do
     err = %{status: :bad_request, message: message}
 
     conn
     |> put_status(:bad_request)
-    |> put_view(json: InvarcWeb.ErrorJSON)
+    |> put_view(json: OtpexWeb.ErrorJSON)
     |> render(:error, error: err)
   end
 
@@ -54,7 +54,7 @@ defmodule OtpexWeb.FallbackController do
 
     conn
     |> put_status(500)
-    |> put_view(json: InvarcWeb.ErrorJSON)
+    |> put_view(json: OtpexWeb.ErrorJSON)
     |> render(:error, error: err)
   end
 end

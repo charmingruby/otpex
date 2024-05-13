@@ -1,4 +1,5 @@
 @baseUrl = http://localhost:4000/api
+@distribuitionId = {{create_distribuition.response.body.id}}
 
 # @name create_distribuition
 POST {{baseUrl}}/distribuitions
@@ -10,3 +11,13 @@ Content-Type: application/json
 }
 
 ###
+
+# @name create_single_log
+POST {{baseUrl}}/logs/single/{{distribuitionId}}
+Content-Type: application/json
+
+{
+    "name": "Client error #{1}",
+    "context": "Error on client at the machine 1",
+    "status": "failure"
+}
