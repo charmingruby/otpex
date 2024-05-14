@@ -17,7 +17,8 @@ defmodule Otpex.Application do
       # Start Finch
       {Finch, name: Otpex.Finch},
       # Start the Endpoint (http/https)
-      OtpexWeb.Endpoint
+      OtpexWeb.Endpoint,
+      Otpex.Logs.Servers.Scheduler
       # Start a worker by calling: Otpex.Worker.start_link(arg)
       # {Otpex.Worker, arg}
     ]
