@@ -26,14 +26,14 @@ defmodule OtpexWeb.LogsController do
     context: [type: :string, required: true],
     status: [type: :string, required: true],
     distribuition_id: [type: :string, required: true],
-    quantity: [type: :string, required: true]
+    quantity: [type: :integer, required: true]
   }
   def create_multiple_log(conn, params) do
     with {:ok, casted_params} <- Params.cast_params(params, @create_multiple_log_params_schema),
-         {:ok, logs} <- Services.CreateMultipleLogs.call(casted_params) do
+         :ok <- Services.CreateMultipleLogs.call(casted_params) do
       conn
       |> put_status(201)
-      |> render(:log_list, logs: logs)
+      |> render(:multiple_logs, log: casted_params)
     end
   end
 end

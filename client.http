@@ -21,3 +21,15 @@ Content-Type: application/json
     "context": "Error on client at the machine 1",
     "status": "failure"
 }
+###
+
+# @name create_multiple_log
+POST {{baseUrl}}/logs/multiple/{{distribuitionId}}
+Content-Type: application/json
+
+{
+    "name": "Client error",
+    "context": "Error on client at the machine 1",
+    "status": "failure",
+    "quantity": 2000
+}

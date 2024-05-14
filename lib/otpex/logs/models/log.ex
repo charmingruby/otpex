@@ -10,6 +10,8 @@ defmodule Otpex.Logs.Models.Log do
     context
     status
     distribuition_id
+    inserted_at
+    updated_at
   )a
 
   @required_params_for_creation ~w(
